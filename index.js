@@ -11,6 +11,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
+app.get('/', (res,req)=> {
+  res.send("Hello from Database it's working !!!")
+})
+
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
