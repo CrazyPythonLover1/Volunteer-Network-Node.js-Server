@@ -43,10 +43,10 @@ client.connect(err => {
     })
   })
 
-  app.delete('/delete/:id', (req,res) => {
-    registrations.deleteOne({_id: ObjectId(req.params.id)})
+  app.delete('/delete', (req,res) => {
+    registrations.deleteOne({_id: ObjectId(req.headers.id)})
     .then((result) => {
-      res.send(result.deletedCount> 0);
+      res.send(result.deletedCount>0);
     })
   })
 
