@@ -36,6 +36,13 @@ client.connect(err => {
     })
   })
 
+  app.get('/volunteerRegistration', (req,res) => {
+    registrations.find({})
+    .toArray((err, documents) => {
+      res.status(200).send(documents)
+    })
+  })
+
 });
 
 
