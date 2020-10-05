@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-app.get('/', (res,req)=> {
+app.get('/', (req, res)=> {
   res.send("Hello from Database it's working !!!")
 })
 
