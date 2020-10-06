@@ -30,13 +30,12 @@ client.connect(err => {
     })
   })
 
-  add.port('/addEvent', (req,res)=> {
+  app.post('/addEvent', (req,res) => {
     const newEvent = req.body;
     events.insertOne(newEvent)
     .then(result => {
-      res.send(result.insertedCount > 0 )
+      res.send(result.insertedCount > 0)
     })
-
   })
 
   app.get('/events', (req,res)=>{
