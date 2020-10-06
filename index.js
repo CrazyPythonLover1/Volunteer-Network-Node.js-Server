@@ -20,6 +20,7 @@ app.get('/', (req, res)=> {
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
   const registrations = client.db(process.env.DB_NAME).collection("volunteerRegistrations");
+  const events = client.db(process.env.DB_NAME).collection("events");
   
   app.post('/addRegistration', (req,res) => {
     const newRegistration = req.body;
@@ -27,6 +28,15 @@ client.connect(err => {
     .then(result => {
       res.send(result.insertedCount > 0)
     })
+  })
+
+  add.port('/addEvent', (req,res)=> {
+    const newEvent = req.body;
+    events.insertOne(newEvent)
+    .then(result => {
+      res.send(result.insertedCount > 0 )
+    })
+
   })
 
   app.get('/events', (req,res)=>{
