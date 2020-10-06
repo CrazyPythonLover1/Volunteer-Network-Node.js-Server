@@ -38,7 +38,7 @@ client.connect(err => {
     })
   })
 
-  app.get('/events', (req,res)=>{
+  app.get('/userSelectedEvents', (req,res)=>{
     queryEmail = req.query.email;
     registrations.find({email: queryEmail})
     .toArray((err, documents) => {
@@ -52,6 +52,14 @@ client.connect(err => {
       res.status(200).send(documents)
     })
   })
+
+  app.get('/events', (req, res) => {
+    events.find({})
+    .toArray((err, documents) => {
+      res.status(200).send(documents)
+    })
+  })
+
 
   app.delete('/delete', (req,res) => {
     registrations.deleteOne({_id: ObjectID(req.headers.id)})
